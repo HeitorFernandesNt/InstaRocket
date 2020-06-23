@@ -9,28 +9,17 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 //mongoose.connect('mongodb+srv://stack:semana@cluster0-i0nnp.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
-mongoose.connect('mongodb://root:root@localhost:27017/omniseat', {
-  useNewUrlParser: true,
-});
+mongoose.connect('mongodb://root:root@localhost:27017/omniseat',{ useNewUrlParser: true });
 
 app.use((req, res, next) => {
-  req.io = io;
-  next();
+    req.io = io;
+    next();
 });
 
 app.use(cors());
 
-app.use(
-  '/files',
-  express.static(path.resolve(__dirname, '..', 'uploads', 'resized'))
-);
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resized')));
 
 app.use(require('./routes'));
 
 server.listen(3003);
-
-//a
-//b
-//bb
-//CCccccccccccccccccccccccccccccccccccccccccccccC
-//dddDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
